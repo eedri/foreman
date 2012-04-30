@@ -1,0 +1,1 @@
+/usr/share/foreman/vendor/rails/railties/dispatches/config.ru
