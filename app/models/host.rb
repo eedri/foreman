@@ -595,6 +595,15 @@ class Host < Puppet::Rails::Host
     {}
   end
 
+  def reserve!
+    param = "RESERVED"
+    if p=host_parameters.find_by_name(param)
+      p.update_attribute(:value, "true")
+    else
+      host_parameters.create!(:name => param, :value => "true")
+    end
+  end
+
   private
   # align common mac and ip address input
   def normalize_addresses
@@ -680,4 +689,10 @@ class Host < Puppet::Rails::Host
   def self.report_status
     "puppet_status"
   end
+
+  def as_json(options={})
+    super(:methods => [:host_parameters])
+  end
+
+
 end

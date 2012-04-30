@@ -15,7 +15,8 @@ class Hostgroup < ActiveRecord::Base
   has_many :template_combinations
   before_save :serialize_vm_attributes
 
-  default_scope :order => 'LOWER(hostgroups.name)'
+  default_scope :order => :name
+  #default_scope :order => 'LOWER(hostgroups.name)'
 
   alias_attribute :os, :operatingsystem
   alias_attribute :label, :to_label

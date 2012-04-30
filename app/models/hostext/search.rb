@@ -29,6 +29,7 @@ module Hostext
           scoped_search :in => :subnet,      :on => :network, :complete_value => true, :rename => :subnet
           scoped_search :on => :mac,           :complete_value => true
           scoped_search :on => :build,         :complete_value => {:true => true, :false => false}
+          scoped_search :on => :managed,       :complete_value => {:true => true, :false => false}
           scoped_search :on => :installed_at,  :complete_value => true
           scoped_search :in => :operatingsystem, :on => :name, :complete_value => true, :rename => :os
         end
@@ -98,7 +99,8 @@ module Hostext
                 conditions << "hosts.id = #{param.reference_id}"
             end
           end
-          conditions.join(' OR ')
+          #conditions.join(' OR ')
+          conditions.empty? ? [] : "( #{conditions.join(' OR ')} )"
         end
 
         def self.value_to_sql(operator, value)

@@ -1,11 +1,6 @@
 --- !ruby/object:Gem::Specification 
 name: rparsec
 version: !ruby/object:Gem::Version 
-  hash: 15
-  prerelease: false
-  segments: 
-  - 1
-  - 0
   version: "1.0"
 platform: ruby
 authors: 
@@ -13,7 +8,7 @@ authors:
 autorequire: rparsec
 bindir: bin
 cert_chain: 
-date: 2008-06-17 00:00:00 +03:00
+date: 2008-06-16 17:00:00 -04:00
 default_executable: 
 dependencies: []
 
@@ -59,8 +54,6 @@ files:
 - test/src/tests.rb
 has_rdoc: true
 homepage: 
-licenses: []
-
 post_install_message: 
 rdoc_options: []
 
@@ -71,25 +64,17 @@ required_ruby_version: !ruby/object:Gem::Requirement
   requirements: 
   - - ">"
     - !ruby/object:Gem::Version 
-      hash: 31
-      segments: 
-      - 0
-      - 0
-      - 0
       version: 0.0.0
 required_rubygems_version: !ruby/object:Gem::Requirement 
   none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
-      segments: 
-      - 0
       version: "0"
 requirements: []
 
 rubyforge_project: 
-rubygems_version: 1.3.7
+rubygems_version: 1.3.1
 signing_key: 
 specification_version: 1
 summary: A Ruby Parser Combinator Framework

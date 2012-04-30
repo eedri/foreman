@@ -420,6 +420,28 @@ class HostsController < ApplicationController
     render :partial => "provisioning", :locals => {:templates => templates}
   end
 
+  def reserve
+    unless api_request?
+      error "This operation is only valid via an API request"
+      redirect_back_or_to root_path  and return
+    end
+
+    my_hosts        = User.current.admin? ? Host : Host.my_hosts
+    amount          = (params[:amount] || 1).to_i
+    potential_hosts = my_hosts.search_for(params[:query])
+
+    return not_found if potential_hosts.empty?
+
+    return not_acceptable if potential_hosts.count < amount
+
+    hosts = potential_hosts[0..(amount-1)].each { |host| host.reserve! }
+    respond_to do |format|
+      format.json {render :json => hosts.map(&:name)}
+      format.yaml {render :text => hosts.to_yaml}
+      format.any { invalid_request }
+    end
+  end
+
   private
   def find_hosts
     fact, klass, group = params[:fact], params[:class], params[:hostgroup]
