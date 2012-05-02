@@ -97,6 +97,10 @@ class ApplicationController < ActionController::Base
     render :text => 'Invalid query', :status => 400
   end
 
+  def not_acceptable
+    head :status => 406
+  end
+
   def not_found(exception = nil)
     logger.debug "not found: #{exception}" if exception
     respond_to do |format|

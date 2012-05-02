@@ -51,6 +51,7 @@ Foreman::Application.routes.draw do
         get 'active'
         get 'pending'
         get 'out_of_sync'
+        get 'reserve'
         get 'errors'
         get 'disabled'
         post 'process_hostgroup'
